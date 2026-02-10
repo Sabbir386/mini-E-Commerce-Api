@@ -1,26 +1,19 @@
-import config from '../config';
-import { USER_ROLE } from '../User/user.constant';
 import { User } from '../User/user.model';
 
 const superUser = {
-  id:"S-0001",
-  username: 'Sabbir Ahmed',
-  email: 'admin@Ecommerce.com',
-  password: config.super_admin_password,
-  role: USER_ROLE.superAdmin,
-  needsPasswordChange: false,
-  status: 'active',
-  isDeleted: false,
-  country: 'USA',
+  "name": "Admin",
+  "email": "admin@mail.com",
+  "password": "123456",
+  "role": "admin"
 };
 
-const seedSuperAdmin = async () => {
+const seedAdmin = async () => {
   //when database is connected, we will check is there any user who is super admin
-  const isSuperAdminExits = await User.findOne({ role: USER_ROLE.superAdmin });
+  const isAdminExits = await User.findOne({ role: "admin" });
 
-  if (!isSuperAdminExits) {
+  if (!isAdminExits) {
     await User.create(superUser);
   }
 };
 
-export default seedSuperAdmin;
+export default seedAdmin;

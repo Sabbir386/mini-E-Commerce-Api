@@ -1,13 +1,14 @@
 import { Server } from 'http';
 import app from './app';
-import seedSuperAdmin from './app/DB';
+
 import config from './app/config';
 import mongoose from 'mongoose';
+import seedAdmin from './app/DB';
 let server: Server;
 async function main() {
   try {
     await mongoose.connect(config.database_url as string);
-    seedSuperAdmin();
+    seedAdmin();
     server = app.listen(config.port, () => {
       console.log(`App listening on port ${config.port}`);
     });
