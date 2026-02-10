@@ -69,6 +69,10 @@ Collections:
 
 Relation
 
+User → Cart (1:1)
+
+User → Order (1:N)
+
 User → Order (1:N)
 
 Cart → Product (M:N)
