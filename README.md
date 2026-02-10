@@ -1,6 +1,6 @@
 # Mini E-Commerce API
 
-This is a RESTful API for a mini e-commerce application built with Node.js, Express, and MongoDB. It supports user authentication, product management, cart functionality, order management, and payment simulation.
+This is a RESTful API for a mini e-commerce application built with Node.js, Express,Typescript and MongoDB. It supports user authentication, product management, cart functionality, order management, and payment simulation.
 
 ---
 
