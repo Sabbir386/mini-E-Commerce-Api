@@ -1,5 +1,6 @@
 export const USER_ROLE = {
   admin: 'admin',
-  user: 'user',
+  customer: 'customer',
 } as const;
 
+export type TUserRole = "admin" | "customer";
