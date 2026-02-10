@@ -4,17 +4,14 @@ import { AuthValidation } from "./auth.validation";
 import validateRequest from "../middleware/validateRequest";
 
 const router = express.Router();
-
 router.post(
   "/register",
   validateRequest(AuthValidation.registerValidationSchema),
   AuthController.registerUser
 );
-
 router.post(
   "/login",
   validateRequest(AuthValidation.loginValidationSchema),
   AuthController.loginUser
 );
-
 export const AuthRoutes = router;
