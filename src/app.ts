@@ -74,6 +74,8 @@ const allowedOrigin = [
   'http://localhost:3000',
   'http://194.163.173.117',
   'http://localhost:5173',
+  'https://e-commerce-er6ruy2dr-sbms-projects-db146837.vercel.app',
+
 
 ];
 
@@ -106,6 +108,6 @@ app.get('/', (req: Request, res: Response) => {
   res.send('App is Running');
 });
 
-app.use(notFound);          // FIRST
-app.use(globalErrorHandler); // LAST
+app.use(notFound);
+app.use(globalErrorHandler);
 export default app;
