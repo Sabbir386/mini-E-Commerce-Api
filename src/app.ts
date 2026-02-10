@@ -38,11 +38,11 @@ app.use(
         connectSrc: [
           "'self'",
           "https://www.google-analytics.com",
-          "https://cashooz-server.vercel.app", 
+          "https://cashooz-server.vercel.app",
         ],
         frameSrc: [
           "'self'",
-          "https://www.youtube.com", 
+          "https://www.youtube.com",
           "https://www.google.com",
         ],
         objectSrc: ["'none'"],
@@ -106,6 +106,6 @@ app.get('/', (req: Request, res: Response) => {
   res.send('App is Running');
 });
 
-app.use(globalErrorHandler);
-app.use(notFound);
+app.use(notFound);          // FIRST
+app.use(globalErrorHandler); // LAST
 export default app;
