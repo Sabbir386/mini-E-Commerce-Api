@@ -1,22 +1,27 @@
+Your README is already **very good** 👍 — submission-ready.
+Only a few small corrections + polishing will make it fully professional.
+
+Below is the **final cleaned README.md** (copy-paste directly).
+
+---
+
+````markdown
 # Mini E-Commerce API
 
-This is a RESTful API for a mini e-commerce application built with Node.js, Express,Typescript and MongoDB. It supports user authentication, product management, cart functionality, order management, and payment simulation.
+This is a RESTful API for a mini e-commerce application built with **Node.js, Express, TypeScript, and MongoDB**.  
+It supports user authentication, product management, cart functionality, order management, and payment simulation.
 
 ---
 
 ## Base URL
 
-```
-
-[https://e-commerce-blond-omega-71.vercel.app/api/v1](https://e-commerce-blond-omega-71.vercel.app/api/v1)
-
-```
+https://e-commerce-blond-omega-71.vercel.app/api/v1
 
 ---
 
 ## Tech Stack
 
-- **Backend:** Node.js, Express.js
+- **Backend:** Node.js, Express.js, TypeScript
 - **Database:** MongoDB (Mongoose)
 - **Authentication:** JWT
 - **Validation:** Zod / Custom Middleware
@@ -28,21 +33,22 @@ This is a RESTful API for a mini e-commerce application built with Node.js, Expr
 
 ## Setup Instructions
 
-1. **Clone repository**
+### 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/Sabbir386/mini-E-Commerce-Api.git
 cd mini-E-Commerce-Api
-```
+````
 
-2. **Install dependencies**
+### 2️⃣ Install Dependencies
 
 ```bash
 npm install
 ```
 
-3. **Environment variables**
-   Create a `.env` file and add:
+### 3️⃣ Environment Variables
+
+Create a `.env` file and add:
 
 ```
 PORT=5000
@@ -50,7 +56,7 @@ MONGO_URI=<your-mongodb-uri>
 JWT_ACCESS_SECRET=<your-jwt-secret>
 ```
 
-4. **Run the server**
+### 4️⃣ Run Server
 
 ```bash
 npm run start:dev
@@ -60,86 +66,137 @@ npm run start:dev
 
 ## Database Schema / ER Diagram
 
-Collections:
+### Collections
 
-- **Users:** `_id, name, email, password, role, cancellationCount, createdAt, updatedAt`
-- **Products:** `_id, name, description, price, stock, isDeleted, createdAt, updatedAt`
-- **Cart:** `_id, user, items[{product, quantity}], totalPrice, createdAt, updatedAt`
-- **Orders:** `_id, user, items[{product, quantity, price}], totalAmount, paymentMethod, paymentStatus, status, isCancelled, createdAt, updatedAt`
+**Users**
 
-Relation
+* `_id`
+* `name`
+* `email`
+* `password`
+* `role`
+* `cancellationCount`
+* `createdAt`
+* `updatedAt`
 
-User → Cart (1:1)
+**Products**
 
-User → Order (1:N)
+* `_id`
+* `name`
+* `description`
+* `price`
+* `stock`
+* `isDeleted`
+* `createdAt`
+* `updatedAt`
 
-User → Order (1:N)
+**Cart**
 
-Cart → Product (M:N)
+* `_id`
+* `user`
+* `items[{ product, quantity }]`
+* `totalPrice`
+* `createdAt`
+* `updatedAt`
 
-Order → Product (M:N)
+**Orders**
+
+* `_id`
+* `user`
+* `items[{ product, quantity, price }]`
+* `totalAmount`
+* `paymentMethod`
+* `paymentStatus`
+* `status`
+* `isCancelled`
+* `createdAt`
+* `updatedAt`
+
+---
+
+## Relationships
+
+* User → Cart (**1 : 1**)
+* User → Orders (**1 : N**)
+* Cart → Products (**M : N**)
+* Order → Products (**M : N**)
 
 ---
 
 ## API Endpoints
 
-### Auth
+### 🔐 Auth
 
-- `POST /users/register` – Register user
-- `POST /users/login` – Login user, receive JWT
+* `POST /users/register` → Register user
+* `POST /users/login` → Login & receive JWT
 
-### Products
+---
 
-- `GET /products` – List all products
-- `GET /products/:id` – Get product details
-- `POST /products` – Create product (admin only)
-- `PATCH /products/:id` – Update product (admin only)
-- `DELETE /products/:id` – Delete product (admin only)
+### 📦 Products
 
-### Cart
+* `GET /products` → Get all products
+* `GET /products/:id` → Get product details
+* `POST /products` → Create product (**Admin**)
+* `PATCH /products/:id` → Update product (**Admin**)
+* `DELETE /products/:id` → Soft delete product (**Admin**)
 
-- `POST /cart/add` – Add item (customer only)
-- `POST /cart/remove` – Remove item (customer only)
-- `GET /cart` – Get current user's cart (customer only)
+---
 
-### Orders
+### 🛒 Cart (Customer Only)
 
-- `POST /orders` – Create order (customer only)
-- `GET /orders/my` – Get my orders (customer only)
-- `GET /orders` – Get all orders (admin only)
-- `PATCH /orders/:orderId` – Update order status (admin only)
-- `PATCH /orders/cancel/:orderId` – Cancel order (customer only)
+* `POST /cart/add` → Add item to cart
+* `POST /cart/remove` → Remove item from cart
+* `GET /cart` → Get logged-in user cart
+
+---
+
+### 📑 Orders
+
+* `POST /orders` → Create order
+* `GET /orders/my` → Get my orders
+* `GET /orders` → Get all orders (**Admin**)
+* `PATCH /orders/:orderId` → Update order status (**Admin**)
+* `PATCH /orders/cancel/:orderId` → Cancel order (**Customer**)
 
 ---
 
 ## Key Architectural Decisions
 
-- Role-based authentication (JWT + middleware)
-- Mongoose transactions for cart → order conversion
-- Stock deduction on order, restored on cancellation
-- Cart linked to user (single cart per user)
+* Role-based authentication using JWT
+* Middleware-based route protection
+* Mongoose transactions for order creation
+* Stock deduction on order placement
+* Stock restoration on cancellation
+* Single cart per user design
 
 ---
 
 ## Assumptions
 
-- Only two roles: `admin` and `customer`
-- Payment simulation only (no real integration)
-- Users can cancel max 3 orders; after that, cancellation is blocked
-- Admins can view/update all orders; customers manage only their own
+* Only two roles exist → `admin`, `customer`
+* Payment is simulated (no real gateway)
+* Maximum 3 order cancellations per user
+* Admin manages all orders
+* Customers manage only their own data
 
 ---
 
 ## Postman Collection
 
-Include a Postman collection JSON file for testing endpoints.
+A Postman collection is included for testing all endpoints.
 
 ---
 
-## Optional checking vercel deployment main url
+## Live Deployment
 
-- **Live API:** [https://e-commerce-blond-omega-71.vercel.app](https://e-commerce-blond-omega-71.vercel.app)
+Base API:
+[https://e-commerce-blond-omega-71.vercel.app/api/v1](https://e-commerce-blond-omega-71.vercel.app/api/v1)
+
+Main URL:
+[https://e-commerce-blond-omega-71.vercel.app](https://e-commerce-blond-omega-71.vercel.app)
+
+---
 
 ```
 
-```
+---
