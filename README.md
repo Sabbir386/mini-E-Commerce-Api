@@ -190,8 +190,3 @@ Main URL:
 [https://e-commerce-blond-omega-71.vercel.app](https://e-commerce-blond-omega-71.vercel.app)
 
 ---
-
-```
-
----
-```
