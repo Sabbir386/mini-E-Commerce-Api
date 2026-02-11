@@ -1,4 +1,3 @@
-
 ````markdown
 # Mini E-Commerce API
 
@@ -32,6 +31,7 @@ https://e-commerce-blond-omega-71.vercel.app/api/v1
 ```bash
 git clone https://github.com/Sabbir386/mini-E-Commerce-Api.git
 cd mini-E-Commerce-Api
+```
 ````
 
 ### 2️⃣ Install Dependencies
@@ -46,7 +46,7 @@ Create a `.env` file and add:
 
 ```
 PORT=5000
-MONGO_URI=<your-mongodb-uri>
+DATABASE_URL=<your-mongodb-uri>
 JWT_ACCESS_SECRET=<your-jwt-secret>
 ```
 
@@ -64,56 +64,56 @@ npm run start:dev
 
 **Users**
 
-* `_id`
-* `name`
-* `email`
-* `password`
-* `role`
-* `cancellationCount`
-* `createdAt`
-* `updatedAt`
+- `_id`
+- `name`
+- `email`
+- `password`
+- `role`
+- `cancellationCount`
+- `createdAt`
+- `updatedAt`
 
 **Products**
 
-* `_id`
-* `name`
-* `description`
-* `price`
-* `stock`
-* `isDeleted`
-* `createdAt`
-* `updatedAt`
+- `_id`
+- `name`
+- `description`
+- `price`
+- `stock`
+- `isDeleted`
+- `createdAt`
+- `updatedAt`
 
 **Cart**
 
-* `_id`
-* `user`
-* `items[{ product, quantity }]`
-* `totalPrice`
-* `createdAt`
-* `updatedAt`
+- `_id`
+- `user`
+- `items[{ product, quantity }]`
+- `totalPrice`
+- `createdAt`
+- `updatedAt`
 
 **Orders**
 
-* `_id`
-* `user`
-* `items[{ product, quantity, price }]`
-* `totalAmount`
-* `paymentMethod`
-* `paymentStatus`
-* `status`
-* `isCancelled`
-* `createdAt`
-* `updatedAt`
+- `_id`
+- `user`
+- `items[{ product, quantity, price }]`
+- `totalAmount`
+- `paymentMethod`
+- `paymentStatus`
+- `status`
+- `isCancelled`
+- `createdAt`
+- `updatedAt`
 
 ---
 
 ## Relationships
 
-* User → Cart (**1 : 1**)
-* User → Orders (**1 : N**)
-* Cart → Products (**M : N**)
-* Order → Products (**M : N**)
+- User → Cart (**1 : 1**)
+- User → Orders (**1 : N**)
+- Cart → Products (**M : N**)
+- Order → Products (**M : N**)
 
 ---
 
@@ -121,57 +121,57 @@ npm run start:dev
 
 ### 🔐 Auth
 
-* `POST /users/register` → Register user
-* `POST /users/login` → Login & receive JWT
+- `POST /users/register` → Register user
+- `POST /users/login` → Login & receive JWT
 
 ---
 
 ### 📦 Products
 
-* `GET /products` → Get all products
-* `GET /products/:id` → Get product details
-* `POST /products` → Create product (**Admin**)
-* `PATCH /products/:id` → Update product (**Admin**)
-* `DELETE /products/:id` → Soft delete product (**Admin**)
+- `GET /products` → Get all products
+- `GET /products/:id` → Get product details
+- `POST /products` → Create product (**Admin**)
+- `PATCH /products/:id` → Update product (**Admin**)
+- `DELETE /products/:id` → Soft delete product (**Admin**)
 
 ---
 
 ### 🛒 Cart (Customer Only)
 
-* `POST /cart/add` → Add item to cart
-* `POST /cart/remove` → Remove item from cart
-* `GET /cart` → Get logged-in user cart
+- `POST /cart/add` → Add item to cart
+- `POST /cart/remove` → Remove item from cart
+- `GET /cart` → Get logged-in user cart
 
 ---
 
 ### 📑 Orders
 
-* `POST /orders` → Create order
-* `GET /orders/my` → Get my orders
-* `GET /orders` → Get all orders (**Admin**)
-* `PATCH /orders/:orderId` → Update order status (**Admin**)
-* `PATCH /orders/cancel/:orderId` → Cancel order (**Customer**)
+- `POST /orders` → Create order
+- `GET /orders/my` → Get my orders
+- `GET /orders` → Get all orders (**Admin**)
+- `PATCH /orders/:orderId` → Update order status (**Admin**)
+- `PATCH /orders/cancel/:orderId` → Cancel order (**Customer**)
 
 ---
 
 ## Key Architectural Decisions
 
-* Role-based authentication using JWT
-* Middleware-based route protection
-* Mongoose transactions for order creation
-* Stock deduction on order placement
-* Stock restoration on cancellation
-* Single cart per user design
+- Role-based authentication using JWT
+- Middleware-based route protection
+- Mongoose transactions for order creation
+- Stock deduction on order placement
+- Stock restoration on cancellation
+- Single cart per user design
 
 ---
 
 ## Assumptions
 
-* Only two roles exist → `admin`, `customer`
-* Payment is simulated (no real gateway)
-* Maximum 3 order cancellations per user
-* Admin manages all orders
-* Customers manage only their own data
+- Only two roles exist → `admin`, `customer`
+- Payment is simulated (no real gateway)
+- Maximum 3 order cancellations per user
+- Admin manages all orders
+- Customers manage only their own data
 
 ---
 
@@ -194,3 +194,4 @@ Main URL:
 ```
 
 ---
+```
